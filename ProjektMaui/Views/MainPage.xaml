@@ -1,0 +1,22 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.MainPage"
+             Title="Strona główna">
+
+    <StackLayout Padding="20" Spacing="25">
+        <Label x:Name="WelcomeLabel" FontSize="24" HorizontalOptions="Center" />
+        <Label x:Name="RoleLabel" FontSize="18" HorizontalOptions="Center" />
+
+        <StackLayout x:Name="AdminPanel" IsVisible="False">
+            <Label Text="Panel administratora:" FontAttributes="Bold" />
+            <Button Text="Zarządzaj użytkownikami" Clicked="OnManageUsers" />
+            <Button Text="Zobacz wszystkie raporty" Clicked="OnViewReports" />
+        </StackLayout>
+
+        <StackLayout x:Name="UserPanel" IsVisible="False">
+            <Label Text="Twoje opcje:" FontAttributes="Bold" />
+            <Button Text="Zobacz moje dane" Clicked="OnViewMyData" />
+            <Button Text="Zgłoś problem" Clicked="OnReportIssue" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

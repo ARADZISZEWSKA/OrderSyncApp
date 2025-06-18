@@ -27,7 +27,7 @@ public partial class LoginPage : ContentPage
         try
         {
             using var client = new HttpClient();
-            client.BaseAddress = new Uri("https://ordersyncbackend-akb4c5fmdhfkb9g3.polandcentral-01.azurewebsites.net"); 
+            client.BaseAddress = new Uri("https://ordersyncbackend-akb4c5fmdhfkb9g3.polandcentral-01.azurewebsites.net");
 
             var response = await client.PostAsync("/api/user/login", content);
 
@@ -36,9 +36,20 @@ public partial class LoginPage : ContentPage
                 var responseBody = await response.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<LoginResponse>(responseBody);
 
-                await DisplayAlert("Sukces", $"Witaj, {result?.Name}!", "OK");
-                // Przejœcie do strony po zalogowaniu
-                await Shell.Current.GoToAsync("//HomePage");
+                if (result != null)
+                {
+                    await DisplayAlert("Sukces", $"Witaj, {result.Name}!", "OK");
+
+                    // Przejœcie do MainPage z przekazaniem Name i Role
+                    await Navigation.PushAsync(new MainPage(result.Name, result.Role));
+
+                    // ALBO jeœli u¿ywasz Shell, mo¿esz ustawiæ MainPage rêcznie:
+                    // Application.Current.MainPage = new NavigationPage(new MainPage(result.Name, result.Role));
+                }
+                else
+                {
+                    await DisplayAlert("B³¹d", "Nie uda³o siê odczytaæ danych logowania", "OK");
+                }
             }
             else
             {
@@ -51,7 +62,7 @@ public partial class LoginPage : ContentPage
         }
     }
 
-    private async void OnRegisterClicked(object sender, EventArgs e)
+        private async void OnRegisterClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(RegisterPage));
     }
