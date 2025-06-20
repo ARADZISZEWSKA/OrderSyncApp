@@ -15,6 +15,7 @@
 
         <StackLayout x:Name="UserPanel" IsVisible="False">
             <Label Text="Twoje opcje:" FontAttributes="Bold" />
+            <Button Text="Przeglądaj katalog" Clicked="OnCatalogClicked" />
             <Button Text="Zobacz moje dane" Clicked="OnViewMyData" />
             <Button Text="Zgłoś problem" Clicked="OnReportIssue" />
         </StackLayout>

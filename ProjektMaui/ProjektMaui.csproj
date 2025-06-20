@@ -77,9 +77,6 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resources.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\MainPage.xaml.cs">
-	    <DependentUpon>MainPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -94,6 +91,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\CatalogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

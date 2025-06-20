@@ -1,4 +1,4 @@
-namespace ProjektMaui.Views;
+ï»¿namespace ProjektMaui.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -12,9 +12,9 @@ public partial class MainPage : ContentPage
         Name = name;
         Role = role;
 
-        // Ustawienie treœci labeli rêcznie
+        // Ustawienie treï¿½ci labeli rï¿½cznie
         WelcomeLabel.Text = $"Witaj, {Name}!";
-        RoleLabel.Text = $"Jesteœ zalogowany jako: {Role}";
+        RoleLabel.Text = $"JesteÅ› zalogowany jako: {Role}";
 
         // Pokazanie odpowiedniego panelu
         if (Role == "Admin")
@@ -25,21 +25,26 @@ public partial class MainPage : ContentPage
 
     private async void OnManageUsers(object sender, EventArgs e)
     {
-        await DisplayAlert("Admin", "Tutaj bêdzie zarz¹dzanie u¿ytkownikami.", "OK");
+        await DisplayAlert("Admin", "Tutaj bï¿½dzie zarzï¿½dzanie uï¿½ytkownikami.", "OK");
     }
 
     private async void OnViewReports(object sender, EventArgs e)
     {
-        await DisplayAlert("Raporty", "Tutaj bêd¹ raporty.", "OK");
+        await DisplayAlert("Raporty", "Tutaj bï¿½dï¿½ raporty.", "OK");
+    }
+
+    private async void OnCatalogClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CatalogPage());
     }
 
     private async void OnViewMyData(object sender, EventArgs e)
     {
-        await DisplayAlert("Dane", "Tutaj bêd¹ twoje dane.", "OK");
+        await DisplayAlert("Dane", "Tutaj bÄ™dÄ… twoje dane.", "OK");
     }
 
     private async void OnReportIssue(object sender, EventArgs e)
     {
-        await DisplayAlert("Zg³oœ", "Tutaj mo¿esz zg³osiæ problem.", "OK");
+        await DisplayAlert("ZgÅ‚oÅ›", "Tutaj moÅ¼esz zgÅ‚osiÄ‡ problem.", "OK");
     }
 }

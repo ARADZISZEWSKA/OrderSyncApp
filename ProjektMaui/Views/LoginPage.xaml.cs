@@ -38,14 +38,15 @@ public partial class LoginPage : ContentPage
 
                 if (result != null)
                 {
+                    // Zapisz token JWT do Preferences
+                    Preferences.Default.Set("jwt_token", result.Token);
+
                     await DisplayAlert("Sukces", $"Witaj, {result.Name}!", "OK");
 
-                    // Przejœcie do MainPage z przekazaniem Name i Role
+                    // Przejœcie do MainPage
                     await Navigation.PushAsync(new MainPage(result.Name, result.Role));
-
-                    // ALBO jeœli u¿ywasz Shell, mo¿esz ustawiæ MainPage rêcznie:
-                    // Application.Current.MainPage = new NavigationPage(new MainPage(result.Name, result.Role));
                 }
+
                 else
                 {
                     await DisplayAlert("B³¹d", "Nie uda³o siê odczytaæ danych logowania", "OK");
@@ -68,12 +69,11 @@ public partial class LoginPage : ContentPage
     }
     public class LoginResponse
     {
-        public string Message { get; set; } = string.Empty;
+        public string Token { get; set; } = string.Empty;
         public int UserId { get; set; }
         public string Role { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
-
-
     }
+
 }
 
