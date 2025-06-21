@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.ManageUsersPage"
+             Title="Zarządzaj użytkownikami">
+
+
+    <VerticalStackLayout Padding="20">
+
+        <Label Text="Lista użytkowników:" 
+               FontSize="20" 
+               Margin="0,0,0,10"/>
+
+        <CollectionView x:Name="UsersCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" Padding="10" Margin="0,0,0,10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Email}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Role}" />
+                            <Button Text="Nadaj rolę Admina" 
+                                    Clicked="OnMakeAdminClicked" 
+                                    CommandParameter="{Binding Id}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

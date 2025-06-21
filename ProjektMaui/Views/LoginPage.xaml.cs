@@ -1,14 +1,16 @@
-using System.Text.Json;
+ï»¿using System.Text.Json;
 using System.Text;
+using Microsoft.Maui.Storage; // dla Preferences
 
 namespace ProjektMaui.Views;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
-	{
-		InitializeComponent();
-	}
+    public LoginPage()
+    {
+        InitializeComponent();
+    }
+
     private async void OnLoginClicked(object sender, EventArgs e)
     {
         string email = EmailEntry.Text?.Trim();
@@ -16,7 +18,7 @@ public partial class LoginPage : ContentPage
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            await DisplayAlert("B³¹d", "Wype³nij wszystkie pola", "OK");
+            await DisplayAlert("BÅ‚Ä…d", "WypeÅ‚nij wszystkie pola", "OK");
             return;
         }
 
@@ -34,39 +36,41 @@ public partial class LoginPage : ContentPage
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
-                var result = JsonSerializer.Deserialize<LoginResponse>(responseBody);
+                var result = JsonSerializer.Deserialize<LoginResponse>(responseBody,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                 if (result != null)
                 {
-                    // Zapisz token JWT do Preferences
+                    // Zapisz token na wszelki wypadek
                     Preferences.Default.Set("jwt_token", result.Token);
+                    System.Diagnostics.Debug.WriteLine($"LoginPage: Token zapisany: {result.Token}");
 
                     await DisplayAlert("Sukces", $"Witaj, {result.Name}!", "OK");
 
-                    // Przejœcie do MainPage
-                    await Navigation.PushAsync(new MainPage(result.Name, result.Role));
+                    // PrzejdÅº do MainPage â€” PRZEKAZUJ TOKEN!
+                    await Navigation.PushAsync(new MainPage(result.Name, result.Role, result.Token));
                 }
-
                 else
                 {
-                    await DisplayAlert("B³¹d", "Nie uda³o siê odczytaæ danych logowania", "OK");
+                    await DisplayAlert("BÅ‚Ä…d", "Nie udaÅ‚o siÄ™ odczytaÄ‡ danych logowania.", "OK");
                 }
             }
             else
             {
-                await DisplayAlert("B³¹d logowania", "Nieprawid³owy email lub has³o", "OK");
+                await DisplayAlert("BÅ‚Ä…d logowania", "NieprawidÅ‚owy email lub hasÅ‚o.", "OK");
             }
         }
         catch (Exception)
         {
-            await DisplayAlert("B³¹d", "Problem z po³¹czeniem do serwera", "OK");
+            await DisplayAlert("BÅ‚Ä…d", "Problem z poÅ‚Ä…czeniem z serwerem.", "OK");
         }
     }
 
-        private async void OnRegisterClicked(object sender, EventArgs e)
+    private async void OnRegisterClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(RegisterPage));
     }
+
     public class LoginResponse
     {
         public string Token { get; set; } = string.Empty;
@@ -74,6 +78,4 @@ public partial class LoginPage : ContentPage
         public string Role { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
     }
-
 }
-

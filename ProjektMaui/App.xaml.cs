@@ -2,6 +2,9 @@
 {
     public partial class App : Application
     {
+        // 
+        public static string JwtToken => Preferences.Default.Get("jwt_token", string.Empty);
+
         public App()
         {
             InitializeComponent();

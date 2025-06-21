@@ -4,19 +4,21 @@ public partial class MainPage : ContentPage
 {
     private string Name { get; set; }
     private string Role { get; set; }
+    private string _token; // 🔑 MUSI BYĆ
 
-    public MainPage(string name, string role)
+    public MainPage(string name, string role, string token) // 🔑 3 parametry
     {
         InitializeComponent();
 
         Name = name;
         Role = role;
+        _token = token;
 
-        // Ustawienie tre�ci labeli r�cznie
+        System.Diagnostics.Debug.WriteLine($"MainPage: Token odebrany: {_token}");
+
         WelcomeLabel.Text = $"Witaj, {Name}!";
         RoleLabel.Text = $"Jesteś zalogowany jako: {Role}";
 
-        // Pokazanie odpowiedniego panelu
         if (Role == "Admin")
             AdminPanel.IsVisible = true;
         else
@@ -25,12 +27,14 @@ public partial class MainPage : ContentPage
 
     private async void OnManageUsers(object sender, EventArgs e)
     {
-        await DisplayAlert("Admin", "Tutaj b�dzie zarz�dzanie u�ytkownikami.", "OK");
+        System.Diagnostics.Debug.WriteLine($"MainPage: Token przekazywany do ManageUsersPage: {_token}");
+        await Navigation.PushAsync(new ManageUsersPage(_token)); // 🔑 Token przekazany parametrem
     }
 
+    // Reszta jak u Ciebie
     private async void OnViewReports(object sender, EventArgs e)
     {
-        await DisplayAlert("Raporty", "Tutaj b�d� raporty.", "OK");
+        await DisplayAlert("Raporty", "Tutaj będą raporty.", "OK");
     }
 
     private async void OnCatalogClicked(object sender, EventArgs e)
