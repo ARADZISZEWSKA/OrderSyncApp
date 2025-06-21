@@ -11,7 +11,7 @@ public partial class ManageUsersPage : ContentPage
     private readonly HttpClient _httpClient;
     private readonly string _jwtToken;
 
-    public ManageUsersPage(string jwtToken) // 🔑 TYLKO Z PARAMETREM
+    public ManageUsersPage(string jwtToken) 
     {
         InitializeComponent();
 

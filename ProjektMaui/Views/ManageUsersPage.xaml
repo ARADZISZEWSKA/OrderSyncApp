@@ -4,42 +4,78 @@
              x:Class="ProjektMaui.Views.ManageUsersPage"
              Title="Zarządzaj użytkownikami">
 
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20"
+                             HorizontalOptions="Center">
 
-    <VerticalStackLayout Padding="20">
+            <Label Text="Lista użytkowników:" 
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
 
-        <Label Text="Lista użytkowników:" 
-               FontSize="20" 
-               Margin="0,0,0,10"/>
+            <CollectionView x:Name="UsersCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#cccccc"
+                               BackgroundColor="#f9f9f9"
+                               CornerRadius="12"
+                               Padding="20"
+                               Margin="0,0,0,20"
+                               HasShadow="True"
+                               WidthRequest="350" 
+                            HorizontalOptions="Center">
 
-        <CollectionView x:Name="UsersCollectionView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="Gray" Padding="10" Margin="0,0,0,10">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Email}" FontAttributes="Bold"/>
-                            <Label Text="{Binding FirstName}" />
-                            <Label Text="{Binding LastName}" />
-                            <Label Text="{Binding Role}" />
+                            <VerticalStackLayout Spacing="10">
 
-                            <Button Text="Nadaj rolę Admina" 
-                Clicked="OnMakeAdminClicked" 
-                CommandParameter="{Binding Id}">
-                                <Button.Triggers>
-                                    <DataTrigger TargetType="Button"
-                             Binding="{Binding Role}"
-                             Value="Admin">
-                                        <Setter Property="IsVisible" Value="False"/>
-                                    </DataTrigger>
-                                </Button.Triggers>
-                            </Button>
-                        </VerticalStackLayout>
-                    </Frame>
+                                <Label Text="{Binding Email}"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       TextColor="#333"/>
 
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{Binding FirstName}"
+                                           FontSize="16"
+                                           TextColor="#555"/>
+                                    <Label Text="{Binding LastName}"
+                                           FontSize="16"
+                                           TextColor="#555"/>
+                                </HorizontalStackLayout>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                <Label Text="Rola:"
+                                       FontAttributes="Bold"
+                                       FontSize="14"
+                                       TextColor="#333"/>
+                                <Label Text="{Binding Role}"
+                                       FontSize="14"
+                                       TextColor="#007ACC"/>
 
-    </VerticalStackLayout>
+                                <Button Text="Nadaj rolę Admina"
+                                        Clicked="OnMakeAdminClicked"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="#673AB7"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        Padding="10,5"
+                                        FontAttributes="Bold"
+                                        WidthRequest="200"   
+                                    HorizontalOptions="Center">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button"
+                                                     Binding="{Binding Role}"
+                                                     Value="Admin">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

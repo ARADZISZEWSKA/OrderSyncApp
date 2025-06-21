@@ -101,17 +101,8 @@ public class OrderDto
     public ProductDto Product { get; set; } = new();
     public UserDto User { get; set; } = new();
     public string Notes { get; set; } = string.Empty;
-    public OrderStatus Status { get; set; }  
-
+    public OrderStatus Status { get; set; }
     public DateTime CreatedAt { get; set; }
-}
-
-public enum OrderStatus
-{
-    Received,
-    InProgress,
-    Completed,
-    Cancelled
 }
 
 public class ProductDto
@@ -123,5 +114,19 @@ public class ProductDto
 public class UserDto
 {
     public int Id { get; set; }
+    public string Email { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    
+
+
+
+}
+
+public enum OrderStatus
+{
+    Received,
+    InProgress,
+    Completed,
+    Cancelled
 }
