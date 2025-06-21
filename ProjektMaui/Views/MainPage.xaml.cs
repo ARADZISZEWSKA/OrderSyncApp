@@ -37,6 +37,11 @@ public partial class MainPage : ContentPage
         await DisplayAlert("Raporty", "Tutaj będą raporty.", "OK");
     }
 
+    private async void OnAddProduct(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddProductPage(_token));
+    }
+
     private async void OnCatalogClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CatalogPage());

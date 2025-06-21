@@ -22,7 +22,13 @@ public partial class CatalogPage : ContentPage
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                var products = JsonSerializer.Deserialize<List<ProductDto>>(json);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var products = JsonSerializer.Deserialize<List<ProductDto>>(json, options);
+
 
                 // Ustawiamy dane do CollectionView
                 ProductsCollection.ItemsSource = products;
@@ -37,6 +43,15 @@ public partial class CatalogPage : ContentPage
             await DisplayAlert("B³¹d", $"B³¹d po³¹czenia: {ex.Message}", "OK");
         }
     }
+
+    private async void OnOrderClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var productId = (int)button.CommandParameter;
+
+        await Navigation.PushAsync(new OrderPage(productId));
+    }
+
 
     public class ProductDto
     {

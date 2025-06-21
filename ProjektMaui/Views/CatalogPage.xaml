@@ -3,16 +3,21 @@
              x:Class="ProjektMaui.Views.CatalogPage"
              Title="Katalog produktów">
 
-    <CollectionView x:Name="ProductsCollection" ItemsSource="{Binding}">
+    <CollectionView x:Name="ProductsCollection">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Padding="10" Spacing="5">
-                    <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
-                    <Label Text="{Binding Description}" FontSize="14"/>
-                    <Label Text="{Binding Price, StringFormat='Cena: {0} zł'}" FontSize="14"/>
-                </StackLayout>
+                <Frame BorderColor="Gray" Margin="10" Padding="10">
+                    <StackLayout Spacing="10">
+                        <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold"/>
+                        <Label Text="{Binding Description}" FontSize="16"/>
+                        <Label Text="{Binding Price, StringFormat='Cena: {0} zł'}" FontSize="16"/>
+
+                        <Button Text="Zamów"
+                                Clicked="OnOrderClicked"
+                                CommandParameter="{Binding Id}" />
+                    </StackLayout>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
 </ContentPage>

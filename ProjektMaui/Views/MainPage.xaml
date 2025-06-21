@@ -9,6 +9,7 @@
 
         <StackLayout x:Name="AdminPanel" IsVisible="False">
             <Label Text="Panel administratora:" FontAttributes="Bold" />
+            <Button Text="Dodaj produkt" Clicked="OnAddProduct"/>
             <Button Text="Zarządzaj użytkownikami" Clicked="OnManageUsers" />
             <Button Text="Zobacz wszystkie raporty" Clicked="OnViewReports" />
         </StackLayout>

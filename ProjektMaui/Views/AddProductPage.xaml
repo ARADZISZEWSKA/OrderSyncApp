@@ -1,0 +1,21 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.AddProductPage"
+             Title="Dodaj produkt">
+
+    <StackLayout Padding="20" Spacing="15">
+        <Label Text="Nazwa produktu:" />
+        <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów"/>
+
+        <Label Text="Opis:" />
+        <Editor x:Name="DescriptionEditor" HeightRequest="100"/>
+
+        <Label Text="Cena:" />
+        <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="np. 150"/>
+
+        <Label Text="URL obrazka (opcjonalnie):" />
+        <Entry x:Name="ImageUrlEntry" Placeholder="https://..."/>
+
+        <Button Text="Dodaj produkt" Clicked="OnAddProductClicked"/>
+    </StackLayout>
+</ContentPage>
