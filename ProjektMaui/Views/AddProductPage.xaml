@@ -13,8 +13,18 @@
         <Label Text="Cena:" />
         <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="np. 150"/>
 
-        <Label Text="URL obrazka (opcjonalnie):" />
-        <Entry x:Name="ImageUrlEntry" Placeholder="https://..."/>
+        <Button Text="Wybierz zdjęcie"
+        Clicked="OnPickImageClicked"
+        BackgroundColor="#5A35D5"
+        TextColor="White"
+        CornerRadius="10"/>
+
+        <Image x:Name="SelectedImage"
+       HeightRequest="200"
+       WidthRequest="200"
+       Aspect="AspectFill"
+       IsVisible="False"/>
+
 
         <Button Text="Dodaj produkt" Clicked="OnAddProductClicked"/>
     </StackLayout>

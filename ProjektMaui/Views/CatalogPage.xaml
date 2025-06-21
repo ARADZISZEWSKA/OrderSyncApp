@@ -3,18 +3,50 @@
              x:Class="ProjektMaui.Views.CatalogPage"
              Title="Katalog produktów">
 
-    <CollectionView x:Name="ProductsCollection">
+    <CollectionView x:Name="ProductsCollection"
+                    Margin="10">
+
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame BorderColor="Gray" Margin="10" Padding="10">
-                    <StackLayout Spacing="10">
-                        <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold"/>
-                        <Label Text="{Binding Description}" FontSize="16"/>
-                        <Label Text="{Binding Price, StringFormat='Cena: {0} zł'}" FontSize="16"/>
+                <Frame BorderColor="Gray"
+                       CornerRadius="10"
+                       HasShadow="True"
+                       Margin="10"
+                       Padding="15">
 
+                    <StackLayout Spacing="10">
+
+                        <!-- ZDJĘCIE -->
+                        <Image Source="{Binding ImageUrl}"
+                               HeightRequest="150"
+                               Aspect="AspectFill"
+                               BackgroundColor="#cccccc"
+                               />
+
+                        <!-- Nazwa produktu -->
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="20" />
+
+                        <!-- Opis produktu -->
+                        <Label Text="{Binding Description}"
+                               FontSize="16"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="3" />
+
+                        <!-- Cena -->
+                        <Label Text="{Binding Price, StringFormat='Cena: {0} zł'}"
+                               FontSize="16"
+                               TextColor="DarkGreen" />
+
+                        <!-- Przyciski -->
                         <Button Text="Zamów"
                                 Clicked="OnOrderClicked"
-                                CommandParameter="{Binding Id}" />
+                                CommandParameter="{Binding Id}"
+                                BackgroundColor="#5A35D5"
+                                TextColor="White"
+                                CornerRadius="8" />
+
                     </StackLayout>
                 </Frame>
             </DataTemplate>

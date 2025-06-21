@@ -1,27 +1,110 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.MainPage"
-             Title="Strona główna">
+             Title="Pralnia dywanów - Strona główna">
 
-    <StackLayout Padding="20" Spacing="25">
-        <Label x:Name="WelcomeLabel" FontSize="24" HorizontalOptions="Center" />
-        <Label x:Name="RoleLabel" FontSize="18" HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
 
-        <StackLayout x:Name="AdminPanel" IsVisible="False">
-            <Label Text="Panel administratora:" FontAttributes="Bold" />
-            <Button Text="Dodaj produkt" Clicked="OnAddProduct"/>
-            <Button Text="Zarządzaj użytkownikami" Clicked="OnManageUsers" />
-            <Button Text="Zobacz złożone zamówienia" Clicked="OnViewOrders" />
+            <Label x:Name="WelcomeLabel"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
+            <!-- PANEL ADMINA -->
+            <Frame x:Name="AdminPanel"
+                   IsVisible="False"
+                   BackgroundColor="#ececec"
+                   CornerRadius="15"
+                   Padding="20"
+                   HasShadow="True"
+                   Opacity="0">
 
-            <Button Text="Zobacz wszystkie raporty" Clicked="OnViewReports" />
-        </StackLayout>
+                <VerticalStackLayout Spacing="15">
 
-        <StackLayout x:Name="UserPanel" IsVisible="False">
-            <Label Text="Twoje opcje:" FontAttributes="Bold" />
-            <Button Text="Przeglądaj katalog" Clicked="OnCatalogClicked" />
-            <Button Text="Zobacz moje dane" Clicked="OnViewMyData" />
-            <Button Text="Zgłoś problem" Clicked="OnReportIssue" />
-        </StackLayout>
-    </StackLayout>
+                    <Label Text="Panel administratora:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <Button Text="Dodaj produkt"
+                            Clicked="OnAddProduct"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Zarządzaj użytkownikami"
+                            Clicked="OnManageUsers"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Zobacz złożone zamówienia"
+                            Clicked="OnViewOrders"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Zobacz wszystkie raporty"
+                            Clicked="OnViewReports"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- PANEL USERA -->
+            <Frame x:Name="UserPanel"
+                   IsVisible="False"
+                   BackgroundColor="#ececec"
+                   CornerRadius="15"
+                   Padding="20"
+                   HasShadow="True"
+                   Opacity="0">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="Panel użytkownika:"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <Button Text="Przeglądaj katalog"
+                            Clicked="OnCatalogClicked"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Moje zamówienia"
+                            Clicked="OnMyOrdersClicked"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Zobacz moje dane"
+                            Clicked="OnViewMyData"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Zgłoś problem"
+                            Clicked="OnReportIssue"
+                            BackgroundColor="#5A35D5"
+                            TextColor="White"
+                            CornerRadius="10"
+                            FontAttributes="Bold"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

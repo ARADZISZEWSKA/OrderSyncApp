@@ -6,11 +6,11 @@ namespace ProjektMaui.Views;
 public partial class AddProductPage : ContentPage
 {
     private string _token;
+    private FileResult _selectedImage;
 
     public AddProductPage(string token)
     {
         InitializeComponent();
-
         _token = token;
     }
 
@@ -19,7 +19,6 @@ public partial class AddProductPage : ContentPage
         string name = NameEntry.Text?.Trim();
         string description = DescriptionEditor.Text?.Trim();
         string priceText = PriceEntry.Text?.Trim();
-        string imageUrl = ImageUrlEntry.Text?.Trim() ?? "";
 
         if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(priceText))
         {
@@ -32,6 +31,9 @@ public partial class AddProductPage : ContentPage
             await DisplayAlert("B³¹d", "Niepoprawna cena", "OK");
             return;
         }
+
+        // Na razie — dopóki nie mamy upload do Blob:
+        string imageUrl = _selectedImage?.FileName ?? "";
 
         var productData = new
         {
@@ -67,6 +69,31 @@ public partial class AddProductPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("B³¹d", $"Problem z po³¹czeniem: {ex.Message}", "OK");
+        }
+    }
+
+    private async void OnPickImageClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            _selectedImage = await FilePicker.PickAsync(new PickOptions
+            {
+                PickerTitle = "Wybierz zdjêcie produktu",
+                FileTypes = FilePickerFileType.Images
+            });
+
+            if (_selectedImage != null)
+            {
+                var stream = await _selectedImage.OpenReadAsync();
+                SelectedImage.Source = ImageSource.FromStream(() => stream);
+                SelectedImage.IsVisible = true;
+
+                await DisplayAlert("Info", $"Wybrano plik: {_selectedImage.FileName}", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("B³¹d", $"Nie uda³o siê wybraæ zdjêcia: {ex.Message}", "OK");
         }
     }
 }
