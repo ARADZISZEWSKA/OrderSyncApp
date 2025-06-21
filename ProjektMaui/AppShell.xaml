@@ -17,6 +17,9 @@
     <ShellContent Route="CatalogPage" ContentTemplate="{DataTemplate views:CatalogPage}" />
     <ShellContent Route="ManageUsersPage"
               ContentTemplate="{DataTemplate views:ManageUsersPage}" />
+    <ShellContent Route="OrdersListPage"
+              ContentTemplate="{DataTemplate views:OrdersListPage}" />
+
 
 
 

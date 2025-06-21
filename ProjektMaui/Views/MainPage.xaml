@@ -11,6 +11,9 @@
             <Label Text="Panel administratora:" FontAttributes="Bold" />
             <Button Text="Dodaj produkt" Clicked="OnAddProduct"/>
             <Button Text="Zarządzaj użytkownikami" Clicked="OnManageUsers" />
+            <Button Text="Zobacz złożone zamówienia" Clicked="OnViewOrders" />
+
+
             <Button Text="Zobacz wszystkie raporty" Clicked="OnViewReports" />
         </StackLayout>
 

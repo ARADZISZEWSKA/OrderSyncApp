@@ -42,6 +42,12 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new AddProductPage(_token));
     }
 
+    private async void OnViewOrders(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new OrdersListPage(_token)); 
+    }
+
+
     private async void OnCatalogClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CatalogPage());
