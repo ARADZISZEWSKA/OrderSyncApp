@@ -70,9 +70,10 @@ public partial class OrdersListPage : ContentPage
             if (action == "Anuluj" || string.IsNullOrWhiteSpace(action))
                 return;
 
-            var content = new StringContent($"\"{action}\"",
-                System.Text.Encoding.UTF8,
-                "application/json");
+            // TYLKO TAK — gotowy obiekt DTO, MAŁA LITERA
+            var dto = new { status = action };
+            var json = JsonSerializer.Serialize(dto);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PutAsync($"api/orders/{orderId}/status", content);
 
@@ -83,10 +84,12 @@ public partial class OrdersListPage : ContentPage
             }
             else
             {
-                await DisplayAlert("Błąd", $"Zmiana statusu nie powiodła się ({response.StatusCode})", "OK");
+                var error = await response.Content.ReadAsStringAsync();
+                await DisplayAlert("Błąd", $"Zmiana statusu nie powiodła się ({response.StatusCode}): {error}", "OK");
             }
         }
     }
+
 
 
 

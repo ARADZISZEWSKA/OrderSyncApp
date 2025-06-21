@@ -17,12 +17,25 @@
                     <Frame BorderColor="Gray" Padding="10" Margin="0,0,0,10">
                         <VerticalStackLayout>
                             <Label Text="{Binding Email}" FontAttributes="Bold"/>
+                            <Label Text="{Binding FirstName}" />
+                            <Label Text="{Binding LastName}" />
                             <Label Text="{Binding Role}" />
+
                             <Button Text="Nadaj rolę Admina" 
-                                    Clicked="OnMakeAdminClicked" 
-                                    CommandParameter="{Binding Id}" />
+                Clicked="OnMakeAdminClicked" 
+                CommandParameter="{Binding Id}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button"
+                             Binding="{Binding Role}"
+                             Value="Admin">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
                         </VerticalStackLayout>
                     </Frame>
+
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
