@@ -1,6 +1,6 @@
 namespace ProjektMaui.Views;
 
-using ProjektMaui.Models; // zak³adam ¿e Product jest w shared Models
+using ProjektMaui.Models; 
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -24,7 +24,13 @@ public partial class ManageProductsPage : ContentPage
         LoadProducts();
     }
 
-    private async void LoadProducts()
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await LoadProducts();
+    }
+
+    private async Task LoadProducts()
     {
         try
         {
@@ -47,6 +53,7 @@ public partial class ManageProductsPage : ContentPage
             await DisplayAlert("B³¹d", ex.Message, "OK");
         }
     }
+
 
     private async void OnEditProduct(object sender, EventArgs e)
     {

@@ -1,32 +1,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.AddProductPage"
-             Title="Dodaj produkt">
+             Title="Dodaj produkt"
+             BackgroundColor="White">
+
     <ScrollView>
-        <StackLayout Padding="20" Spacing="15">
-        <Label Text="Nazwa produktu:" />
-        <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów"/>
+        <StackLayout Padding="20" Spacing="20">
 
-        <Label Text="Opis:" />
-        <Editor x:Name="DescriptionEditor" HeightRequest="100"/>
+            <Label Text="Nazwa produktu:" FontAttributes="Bold" FontSize="16"/>
+            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
+                <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów" />
+            </Border>
 
-        <Label Text="Cena:" />
-        <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="np. 150"/>
+            <Label Text="Opis:" FontAttributes="Bold" FontSize="16"/>
+            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
+                <Editor x:Name="DescriptionEditor" HeightRequest="100" />
+            </Border>
 
-        <Button Text="Wybierz zdjęcie"
-        Clicked="OnPickImageClicked"
-        BackgroundColor="#0077b6"
-        TextColor="White"
-        CornerRadius="10"/>
+            <Label Text="Cena:" FontAttributes="Bold" FontSize="16"/>
+            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
+                <Entry x:Name="PriceEntry" Placeholder="np. 150" Keyboard="Numeric" />
+            </Border>
 
-        <Image x:Name="SelectedImage"
-       HeightRequest="200"
-       WidthRequest="200"
-       Aspect="AspectFill"
-       IsVisible="False"/>
+            <Button Text="Wybierz zdjęcie"
+                    Clicked="OnPickImageClicked"
+                    BackgroundColor="#0077b6"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="45"/>
 
+            <Image x:Name="SelectedImage"
+                   Aspect="AspectFit"
+                   IsVisible="False"
+                   Margin="0"
+                   HorizontalOptions="Center"
+                   WidthRequest="300" />
 
-        <Button Text="Dodaj produkt" Clicked="OnAddProductClicked" BackgroundColor="#0077b6"/>
-    </StackLayout>
+            <Button Text="Dodaj produkt"
+                    Clicked="OnAddProductClicked"
+                    BackgroundColor="#0077b6"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"/>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

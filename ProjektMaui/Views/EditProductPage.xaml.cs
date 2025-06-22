@@ -1,4 +1,4 @@
-using ProjektMaui.Models; // lub Twoja namespace z modelem Product
+using ProjektMaui.Models;
 using System.Text;
 using System.Text.Json;
 
@@ -71,8 +71,19 @@ public partial class EditProductPage : ContentPage
             return;
         }
 
-        // Na razie: URL zostaje ten sam lub placeholder nowego pliku
-        string imageUrl = _selectedImage?.FileName ?? _product.ImageUrl;
+        string imageUrl = _product.ImageUrl;
+
+        // Jeœli wybrano nowy obrazek, najpierw wyœlij go do Azure Blob Storage
+        if (_selectedImage != null)
+        {
+            var uploadedUrl = await UploadToBlobAsync(_selectedImage);
+            if (string.IsNullOrEmpty(uploadedUrl))
+            {
+                // Upload siê nie powiód³, przerwij zapis
+                return;
+            }
+            imageUrl = uploadedUrl;
+        }
 
         var updatedProduct = new
         {
@@ -108,6 +119,41 @@ public partial class EditProductPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("B³¹d", $"Problem z po³¹czeniem: {ex.Message}", "OK");
+        }
+    }
+
+    private async Task<string> UploadToBlobAsync(FileResult file)
+    {
+        try
+        {
+            var stream = await file.OpenReadAsync();
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+
+            string blobBaseUrl = "https://blobyprojekt.blob.core.windows.net/produkty";
+            string sasToken = "sp=racwd&st=2025-06-22T19:37:38Z&se=2025-06-25T03:37:38Z&spr=https&sv=2024-11-04&sr=c&sig=IKCU%2FG8Ey9k%2BnkOJLSsEJf6y907POSiLg%2F17f4VxE7o%3D";
+
+            var fullUrl = $"{blobBaseUrl}/{fileName}?{sasToken}";
+
+            using var httpClient = new HttpClient();
+            using var content = new StreamContent(stream);
+            content.Headers.Add("x-ms-blob-type", "BlockBlob");
+
+            var response = await httpClient.PutAsync(fullUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return $"{blobBaseUrl}/{fileName}";
+            }
+            else
+            {
+                await DisplayAlert("B³¹d", "Nie uda³o siê przes³aæ pliku do Azure Blob Storage", "OK");
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("B³¹d", $"B³¹d uploadu: {ex.Message}", "OK");
+            return null;
         }
     }
 }

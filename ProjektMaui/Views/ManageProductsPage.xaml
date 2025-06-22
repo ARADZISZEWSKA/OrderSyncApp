@@ -1,31 +1,95 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.ManageProductsPage"
-             Title="Zarządzaj produktami">
+             Title="Zarządzaj produktami"
+             BackgroundColor="#f2f2f2"
+             Padding="10">
 
-    <CollectionView x:Name="ProductsCollection" ItemsLayout="VerticalList">
+    <CollectionView x:Name="ProductsCollection"
+                    ItemsLayout="VerticalList"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SelectionMode="None"
+                    Margin="0">
+
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame Margin="10" Padding="10" BorderColor="#ccc">
-                    <VerticalStackLayout Spacing="5">
-                        <Image Source="{Binding ImageUrl}" HeightRequest="150" Aspect="AspectFill"/>
-                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
-                        <Label Text="{Binding Description}" FontSize="14"/>
-                        <Label Text="{Binding Price, StringFormat='Cena: {0:C}'}" FontSize="14"/>
+                <Frame Margin="5"
+                       Padding="15"
+                       BorderColor="#ddd"
+                       CornerRadius="16"
+                       HasShadow="True"
+                       BackgroundColor="White"
+                       HorizontalOptions="FillAndExpand">
 
-                        <HorizontalStackLayout Spacing="10">
-                            <Button Text="Edytuj"
+                    <VerticalStackLayout Spacing="15">
+
+                        <Frame CornerRadius="16"
+                               Padding="0"
+                               HasShadow="False"
+                               BackgroundColor="#eeeeee"
+                               HeightRequest="260"
+                               WidthRequest="260"
+                               HorizontalOptions="Center">
+
+                            <Image Source="{Binding ImageUrl}"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand" />
+                        </Frame>
+
+                        <Label Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="18"
+                               TextColor="#222"/>
+
+                        <Label Text="{Binding Description}"
+                               FontSize="14"
+                               TextColor="Gray"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="2" />
+
+                        <Grid ColumnDefinitions="*,Auto,Auto"
+                              VerticalOptions="Center"
+                              HorizontalOptions="FillAndExpand">
+
+                            <Label Grid.Column="0"
+                                   Text="{Binding Price, StringFormat='Cena: {0:C}'}"
+                                   FontSize="15"
+                                   TextColor="DarkGreen"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start" />
+
+                            <Button Grid.Column="1"
+                                    Text="Edytuj"
                                     Clicked="OnEditProduct"
-                                    CommandParameter="{Binding .}"/>
-                            <Button Text="Usuń"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#0077b6"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    WidthRequest="90"
+                                    FontSize="14"
+                                    Margin="5,0,5,0" />
+
+                            <Button Grid.Column="2"
+                                    Text="Usuń"
                                     Clicked="OnDeleteProduct"
                                     CommandParameter="{Binding .}"
-                                    BackgroundColor="Red"
-                                    TextColor="White"/>
-                        </HorizontalStackLayout>
+                                    BackgroundColor="#d62828"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    WidthRequest="90"
+                                    FontSize="14"
+                                    Margin="5,0,5,0" />
+
+                        </Grid>
+
                     </VerticalStackLayout>
                 </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-</ContentPage>
+</ContentPage> 
