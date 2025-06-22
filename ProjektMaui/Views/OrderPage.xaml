@@ -2,15 +2,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.OrderPage"
              Title="Nowe zamówienie">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label x:Name="ProductLabel" FontSize="20" FontAttributes="Bold"/>
 
-    <StackLayout Padding="20" Spacing="15">
-        <Label x:Name="ProductLabel" FontSize="20" FontAttributes="Bold"/>
+            <Label Text="Uwagi:" />
+            <Editor x:Name="NotesEditor" HeightRequest="100"/>
 
-        <Label Text="Uwagi:" />
-        <Editor x:Name="NotesEditor" HeightRequest="100"/>
+            <Label Text="Adres odbioru:"
+                   FontAttributes="Bold"/>
 
-        <!-- Później dodamy ZAŁĄCZNIK tutaj -->
+            <Entry x:Name="AddressEntry"
+                   Placeholder="np. ul. Mickiewicza 10, Kraków"/>
 
-        <Button Text="Wyślij zamówienie" Clicked="OnSubmitOrder"/>
-    </StackLayout>
+            <!-- LOKALIZACJA (GPS) -->
+            <Button Text="Użyj mojej lokalizacji"
+                    Clicked="OnUseLocationClicked"
+                    BackgroundColor="#5A35D5"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+            <Label Text="Załącz zdjęcie:" FontAttributes="Bold"/>
+
+            <Button Text="Wybierz zdjęcie"
+        Clicked="OnPickImageClicked"
+        BackgroundColor="#5A35D5"
+        TextColor="White"
+        CornerRadius="10"/>
+
+            <Image x:Name="SelectedImage"
+       HeightRequest="200"
+       Aspect="AspectFill"
+       IsVisible="False"/>
+
+
+            <Button Text="Wyślij zamówienie" Clicked="OnSubmitOrder"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

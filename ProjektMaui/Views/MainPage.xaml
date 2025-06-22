@@ -62,6 +62,11 @@
                             TextColor="White"
                             CornerRadius="10"
                             />
+                    <Button Text="Wyloguj" 
+                            BackgroundColor="Gray" 
+                            TextColor="White" 
+                            Clicked="OnLogoutClicked" />
+
 
                 </VerticalStackLayout>
             </Frame>
@@ -111,6 +116,11 @@
                             TextColor="White"
                             CornerRadius="10"
                             />
+
+                    <Button Text="Wyloguj" 
+        BackgroundColor="Gray" 
+        TextColor="White" 
+        Clicked="OnLogoutClicked" />
 
                 </VerticalStackLayout>
             </Frame>

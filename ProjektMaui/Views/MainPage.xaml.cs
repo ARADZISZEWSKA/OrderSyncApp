@@ -85,4 +85,14 @@ public partial class MainPage : ContentPage
     {
         await DisplayAlert("Zgłoś", "Tutaj możesz zgłosić problem.", "OK");
     }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        // Wyczyść zapisany token
+        Preferences.Default.Remove("jwt_token");
+
+        // Wróć na LoginPage
+        Application.Current.MainPage = new NavigationPage(new LoginPage());
+    }
+
 }

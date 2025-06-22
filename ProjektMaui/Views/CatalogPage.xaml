@@ -4,6 +4,7 @@
              Title="Katalog produktów">
 
     <CollectionView x:Name="ProductsCollection"
+                    ItemsLayout="VerticalGrid, 2"
                     Margin="10">
 
         <CollectionView.ItemTemplate>

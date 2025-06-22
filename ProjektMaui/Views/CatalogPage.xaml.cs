@@ -47,9 +47,13 @@ public partial class CatalogPage : ContentPage
     private async void OnOrderClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var productId = (int)button.CommandParameter;
+        var product = button?.BindingContext as ProductDto;
 
-        await Navigation.PushAsync(new OrderPage(productId));
+        if (product != null)
+        {
+            await Navigation.PushAsync(new OrderPage(product.Id, product.Name));
+        }
+
     }
 
 
