@@ -1,5 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Text;
+using System.IO;
+
 
 namespace ProjektMaui.Views;
 
@@ -7,6 +10,8 @@ public partial class OrdersListPage : ContentPage
 {
     private readonly HttpClient _httpClient;
     private readonly string _jwtToken;
+    private List<OrderDto> _allOrders = new();
+
 
     public OrdersListPage(string jwtToken)
     {
@@ -21,6 +26,17 @@ public partial class OrdersListPage : ContentPage
         _httpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", _jwtToken);
 
+
+        StatusPicker.ItemsSource = new List<string> { "All", "Received", "InProgress", "Completed", "Cancelled" };
+
+        // 🟢 Potem dopiero ustaw domyślny index:
+        StatusPicker.SelectedIndex = 0;
+
+        // Ustaw daty:
+        FromDatePicker.Date = DateTime.Now.AddMonths(-1);
+        ToDatePicker.Date = DateTime.Now;
+
+
         LoadOrdersAsync();
     }
 
@@ -32,10 +48,10 @@ public partial class OrdersListPage : ContentPage
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                var orders = JsonSerializer.Deserialize<List<OrderDto>>(json,
+                _allOrders = JsonSerializer.Deserialize<List<OrderDto>>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                OrdersCollectionView.ItemsSource = orders;
+                OrdersCollectionView.ItemsSource = _allOrders;
             }
             else
             {
@@ -47,6 +63,31 @@ public partial class OrdersListPage : ContentPage
             await DisplayAlert("Błąd", ex.Message, "OK");
         }
     }
+    private void OnFilterClicked(object sender, EventArgs e)
+    {
+        if (_allOrders == null || !_allOrders.Any())
+        {
+            DisplayAlert("Brak danych", "Nie ma zamówień do filtrowania.", "OK");
+            return;
+        }
+
+        var fromDate = FromDatePicker.Date;
+        var toDate = ToDatePicker.Date.AddDays(1).AddSeconds(-1); // Uwzględnij cały dzień do końca
+
+        // Pobierz wybrany status
+        var selectedStatus = StatusPicker.SelectedItem?.ToString() ?? "All";
+
+        var filtered = _allOrders
+            .Where(o =>
+                o.CreatedAt >= fromDate &&
+                o.CreatedAt <= toDate &&
+                (selectedStatus == "All" || o.Status.ToString() == selectedStatus))
+            .ToList();
+
+        OrdersCollectionView.ItemsSource = filtered;
+    }
+
+
 
     private async void OnChangeStatusClicked(object sender, EventArgs e)
     {
@@ -90,6 +131,44 @@ public partial class OrdersListPage : ContentPage
         }
     }
 
+    private async void OnExportClicked(object sender, EventArgs e)
+    {
+        if (OrdersCollectionView.ItemsSource is not List<OrderDto> orders || !orders.Any())
+        {
+            await DisplayAlert("Błąd", "Brak danych do eksportu.", "OK");
+            return;
+        }
+
+        try
+        {
+            // Buduj CSV
+            var csv = new StringBuilder();
+            csv.AppendLine("Id;Product;Notes;User;Status;CreatedAt");
+
+            foreach (var o in orders)
+            {
+                csv.AppendLine($"{o.Id};{o.Product.Name};{o.Notes};{o.User.FirstName} {o.User.LastName};{o.Status};{o.CreatedAt:yyyy-MM-dd HH:mm}");
+            }
+
+            // Ścieżka do pliku w katalogu aplikacji
+            var fileName = $"Zamowienia_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+            var filePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+
+            File.WriteAllText(filePath, csv.ToString(), Encoding.UTF8);
+
+            await DisplayAlert("Sukces", $"Plik CSV zapisany:\n{filePath}", "OK");
+
+            // Opcjonalnie: otwórz plik
+            await Launcher.Default.OpenAsync(new OpenFileRequest
+            {
+                File = new ReadOnlyFile(filePath)
+            });
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Błąd", $"Nie udało się zapisać pliku.\n{ex.Message}", "OK");
+        }
+    }
 
 
 
