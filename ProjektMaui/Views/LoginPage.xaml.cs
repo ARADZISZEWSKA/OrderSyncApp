@@ -48,7 +48,7 @@ public partial class LoginPage : ContentPage
                     await DisplayAlert("Sukces", $"Witaj, {result.Name}!", "OK");
 
                     // Przejdź do MainPage — PRZEKAZUJ TOKEN!
-                    await Navigation.PushAsync(new MainPage(result.Name, result.Role, result.Token));
+                    await Navigation.PushAsync(new MainPage(result.Name, result.Role, result.Token, result.UserId));
                 }
                 else
                 {

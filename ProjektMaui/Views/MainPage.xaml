@@ -14,7 +14,7 @@
             <!-- PANEL ADMINA -->
             <Frame x:Name="AdminPanel"
                    IsVisible="False"
-                   BackgroundColor="#ececec"
+                   BackgroundColor="#f8f9fa"
                    CornerRadius="15"
                    Padding="20"
                    HasShadow="True"
@@ -69,7 +69,7 @@
             <!-- PANEL USERA -->
             <Frame x:Name="UserPanel"
                    IsVisible="False"
-                   BackgroundColor="#ececec"
+                   BackgroundColor="#f8f9fa"
                    CornerRadius="15"
                    Padding="20"
                    HasShadow="True"

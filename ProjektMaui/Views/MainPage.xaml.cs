@@ -5,14 +5,17 @@ public partial class MainPage : ContentPage
     private string Name { get; set; }
     private string Role { get; set; }
     private string _token;
+    private int _userId;
 
-    public MainPage(string name, string role, string token)
+
+    public MainPage(string name, string role, string token, int userId)
     {
         InitializeComponent();
 
         Name = name;
         Role = role;
         _token = token;
+        _userId = userId;
 
         System.Diagnostics.Debug.WriteLine($"MainPage: Token odebrany: {_token}");
 
@@ -73,8 +76,10 @@ public partial class MainPage : ContentPage
 
     private async void OnViewMyData(object sender, EventArgs e)
     {
-        await DisplayAlert("Dane", "Tutaj będą twoje dane.", "OK");
+        // Przekaż token i userId!
+        await Navigation.PushAsync(new MyProfilePage(_token, _userId));
     }
+
 
     private async void OnReportIssue(object sender, EventArgs e)
     {

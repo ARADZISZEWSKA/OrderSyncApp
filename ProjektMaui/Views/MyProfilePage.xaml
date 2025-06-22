@@ -1,0 +1,24 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.MyProfilePage"
+             Title="Moje dane">
+
+    <StackLayout Padding="20" Spacing="15">
+
+        <Label Text="Imię:" />
+        <Entry x:Name="FirstNameEntry" Placeholder="Twoje imię"/>
+
+        <Label Text="Nazwisko:" />
+        <Entry x:Name="LastNameEntry" Placeholder="Twoje nazwisko"/>
+
+        <Label Text="Email:" />
+        <Entry x:Name="EmailEntry" Placeholder="Twój email" IsReadOnly="True"/>
+
+        <Button Text="Zapisz zmiany"
+                Clicked="OnSaveClicked"
+                BackgroundColor="#0077b6"
+                TextColor="White"
+                CornerRadius="10"/>
+
+    </StackLayout>
+</ContentPage>
