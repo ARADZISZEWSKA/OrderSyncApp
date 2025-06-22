@@ -1,33 +1,58 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektMaui.Views.RegisterPage"
-             Title="Rejestracja">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjektMaui.Views.RegisterPage"
+    BackgroundColor="#e7ecf0">
 
     <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="15">
+        <Grid>
+            <!-- ✅ Responsywny kontener: Fill + Margin + MaxWidth -->
+            <ContentView 
+                x:Name="FormContainer"
+                HorizontalOptions="Fill"
+                Margin="20"
+                MaximumWidthRequest="600">
 
-            <Label Text="Imię" />
-            <Entry x:Name="FirstNameEntry" Placeholder="Wpisz imię" />
+                <VerticalStackLayout 
+                    Padding="10"
+                    Spacing="20">
 
-            <Label Text="Nazwisko" />
-            <Entry x:Name="LastNameEntry" Placeholder="Wpisz nazwisko" />
+                    <!-- Logo -->
+                    <Image Source="logo3.png" HeightRequest="150" HorizontalOptions="Center" />
 
-            <Label Text="Email" />
-            <Entry x:Name="EmailEntry" Placeholder="Wpisz email" Keyboard="Email" />
+                    <!-- Pola formularza -->
+                    <Entry x:Name="FirstNameEntry" Placeholder="Imię" BackgroundColor="White" HorizontalOptions="Fill" />
+                    <Entry x:Name="LastNameEntry" Placeholder="Nazwisko" BackgroundColor="White" HorizontalOptions="Fill"/>
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" BackgroundColor="White" HorizontalOptions="Fill" />
+                    <Entry x:Name="PasswordEntry" Placeholder="Hasło" IsPassword="True" BackgroundColor="White" HorizontalOptions="Fill" />
+                    <Entry x:Name="ConfirmPasswordEntry" Placeholder="Powtórz hasło" IsPassword="True" BackgroundColor="White"  HorizontalOptions="Fill"/>
 
-            <Label Text="Hasło" />
-            <Entry x:Name="PasswordEntry" Placeholder="Wpisz hasło" IsPassword="True" />
+                    <!-- Przycisk rejestracji -->
+                    <Button 
+                        Text="Zarejestruj się" 
+                        Clicked="OnRegisterClicked"
+                        BackgroundColor="#003c53"
+                        TextColor="White"
+                        HorizontalOptions="Fill" />
 
-            <Label Text="Powtórz hasło" />
-            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Powtórz hasło" IsPassword="True" />
+                    <!-- Link do logowania: spójny, 1 Label z FormattedString -->
+                    <Label HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Masz już konto? " />
+                                <Span Text="Zaloguj się"
+                                      TextDecorations="Underline"
+                                      TextColor="#003c53">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnLoginClicked" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-            <Button Text="Zarejestruj się" Clicked="OnRegisterClicked" />
-            
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Masz już konto?" />
-                <Button Text="Zaloguj się" Clicked="OnLoginClicked" />
-            </HorizontalStackLayout>
-
-        </VerticalStackLayout>
+                </VerticalStackLayout>
+            </ContentView>
+        </Grid>
     </ScrollView>
 </ContentPage>

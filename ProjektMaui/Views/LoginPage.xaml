@@ -1,12 +1,69 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:resx="clr-namespace:ProjektMaui"
-             x:Class="ProjektMaui.Views.LoginPage"
-             Title="{x:Static resx:Resources.LoginTitle}">
-    <StackLayout Padding="20" Spacing="15">
-        <Entry Placeholder="{x:Static resx:Resources.EmailPlaceholder}" x:Name="EmailEntry"/>
-        <Entry Placeholder="{x:Static resx:Resources.PasswordPlaceholder}" IsPassword="True" x:Name="PasswordEntry"/>
-        <Button Text="{x:Static resx:Resources.LoginButton}" Clicked="OnLoginClicked"/>
-        <Button Text="Zarejestruj się" Clicked="OnRegisterClicked"/>
-    </StackLayout>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resx="clr-namespace:ProjektMaui"
+    x:Class="ProjektMaui.Views.LoginPage"
+    BackgroundColor="#e7ecf0">
+
+    <ScrollView>
+        <Grid Padding="20">
+            <VerticalStackLayout
+                Spacing="20"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="600"
+                >
+
+                <!-- Logo -->
+                <Image 
+                    Source="logo3.png" 
+                    HeightRequest="150"
+                    HorizontalOptions="Center" />
+
+                <!-- Email -->
+                <Entry 
+                    Placeholder="{x:Static resx:Resources.EmailPlaceholder}" 
+                    x:Name="EmailEntry"
+                    BackgroundColor="White"
+                    TextColor="#003c53"
+                    PlaceholderColor="#607D8B"
+                    HorizontalOptions="Fill"/>
+
+                <!-- Password -->
+                <Entry 
+                    Placeholder="{x:Static resx:Resources.PasswordPlaceholder}" 
+                    IsPassword="True" 
+                    x:Name="PasswordEntry"
+                    TextColor="#0A2F44"
+                    BackgroundColor="White"
+                    PlaceholderColor="#607D8B"
+                    HorizontalOptions="Fill"/>
+
+                <!-- Login Button -->
+                <Button 
+                    Text="{x:Static resx:Resources.LoginButton}" 
+                    Clicked="OnLoginClicked"
+                    BackgroundColor="#003c53"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    FontFamily="RobotoMedium"
+                    HorizontalOptions="Fill"/>
+
+                <!-- Register Button -->
+                <Button 
+                    Text="Zarejestruj się" 
+                    Clicked="OnRegisterClicked"
+                    BackgroundColor="Transparent"
+                    TextColor="#003c53"
+                    BorderColor="#003c53"
+                    BorderWidth="2"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    FontFamily="RobotoMedium"
+                    HorizontalOptions="Fill"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+
 </ContentPage>
