@@ -1,130 +1,254 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektMaui.Views.MainPage"
-             Title="Pralnia dywanów - Strona główna">
+             x:Class="ProjektMaui.Views.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="20">
+    <Grid>
+        <!-- Tło -->
+        <Image Source="carpet.webp" Aspect="AspectFill" />
 
-            <Label x:Name="WelcomeLabel"
-                   FontSize="26"
-                   FontFamily="RobotoMedium"
-                   HorizontalOptions="Center" />
+        <!-- Ciemna poświata -->
+        <BoxView BackgroundColor="Black" Opacity="0.6" />
 
-            <!-- PANEL ADMINA -->
-            <Frame x:Name="AdminPanel"
-                   IsVisible="False"
-                   BackgroundColor="#f8f9fa"
-                   CornerRadius="15"
-                   Padding="20"
-                   HasShadow="True"
-                   Opacity="0">
+        <!-- Zawartość -->
+        <ScrollView>
+            <VerticalStackLayout Padding="30"
+                                 Spacing="30"
+                                 HorizontalOptions="Center"
+                                 MaximumWidthRequest="900">
 
-                <VerticalStackLayout Spacing="15">
+                <!-- Nagłówek -->
+                <Label x:Name="WelcomeLabel"
+                       Text="Witaj w pralni dywanów!"
+                       FontSize="28"
+                       FontFamily="RobotoMedium"
+                       HorizontalOptions="Center"
+                       TextColor="White" />
 
-                    <Label Text="Panel administratora:"
-                           FontSize="18"
-                           FontFamily="RobotoMedium"
-                           HorizontalOptions="Center" />
+                <!-- PANEL ADMINA -->
+                <Frame x:Name="AdminPanel"
+                       IsVisible="False"
+                       BackgroundColor="White"
+                       CornerRadius="20"
+                       Padding="20"
+                       HasShadow="True"
+                       Margin="20,0,20,0"
+       HorizontalOptions="Center"
+       MaximumWidthRequest="800">
 
-                    <Button Text="Dodaj produkt"
-                            Clicked="OnAddProduct"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                    <VerticalStackLayout Spacing="10">
 
-                    <Button Text="Zarządzaj produktami"
-        Clicked="OnManageProducts"
-        BackgroundColor="#0077b6"
-        TextColor="White"
-        CornerRadius="10"
-        />
+                        <Label Text="Panel administratora"
+                               FontSize="22"
+                               FontFamily="RobotoMedium"
+                               HorizontalOptions="Center"
+                               TextColor="#003c53"
+                               Padding="20"/>
+                        
 
+                        <!-- Każdy element -->
+                        <!-- WZORZEC: Ikona - Tekst wyrównany - Ikona prawa -->
+                        <!-- Dodaj produkt -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnAddProduct"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="add_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Dodaj produkt"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="plussolid.png" WidthRequest="16" HeightRequest="16" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Zarządzaj użytkownikami"
-                            Clicked="OnManageUsers"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                        <!-- Zarządzaj produktami -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnManageProducts"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="products_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Produkty"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="lista.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Zobacz złożone zamówienia"
-                            Clicked="OnViewOrders"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                        <!-- Zarządzaj użytkownikami -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnManageUsers"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="users_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Użytkownicy"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="userssolid.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Zobacz wszystkie raporty"
-                            Clicked="OnViewReports"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
-                    <Button Text="Wyloguj" 
-                            BackgroundColor="Gray" 
-                            TextColor="White" 
-                            Clicked="OnLogoutClicked" />
+                        <!-- Zobacz złożone zamówienia -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewOrders"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="orders_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Złożone zamówienia"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="sortsolid.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
+                        <!-- Zobacz wszystkie raporty -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewReports"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="reports_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Raporty"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="flaga.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                </VerticalStackLayout>
-            </Frame>
+                        <!-- Wyloguj -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLogoutClicked"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="logout_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Wyloguj"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#6c757d"/>
+                            <Image Source="logout.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-            <!-- PANEL USERA -->
-            <Frame x:Name="UserPanel"
-                   IsVisible="False"
-                   BackgroundColor="#f8f9fa"
-                   CornerRadius="15"
-                   Padding="20"
-                   HasShadow="True"
-                   Opacity="0">
+                    </VerticalStackLayout>
+                </Frame>
 
-                <VerticalStackLayout Spacing="15">
+                <!-- PANEL USERA -->
+                <Frame x:Name="UserPanel"
+                       IsVisible="False"
+                       BackgroundColor="White"
+                       CornerRadius="20"
+                       Padding="20"
+                       HasShadow="True"
+                       Margin="20,0"
+                       MaximumWidthRequest="800">
 
-                    <Label Text="Panel użytkownika:"
-                           FontSize="18"
-                           FontFamily="RobotoMedium"
-                           HorizontalOptions="Center" />
+                    <VerticalStackLayout Spacing="10">
 
-                    <Button Text="Przeglądaj katalog"
-                            Clicked="OnCatalogClicked"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                        <Label Text="Panel użytkownika"
+                               FontSize="22"
+                               FontFamily="RobotoMedium"
+                               HorizontalOptions="Center"
+                               TextColor="#003c53" 
+                               Padding="20"/>
 
-                    <Button Text="Moje zamówienia"
-                            Clicked="OnMyOrdersClicked"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                        <!-- Przeglądaj katalog -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCatalogClicked"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="catalog_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Katalog"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="sortsolid.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Zobacz moje dane"
-                            Clicked="OnViewMyData"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
-                    
-                    
+                        <!-- Moje zamówienia -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnMyOrdersClicked"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="orders_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Zamówienia"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="lista.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Zgłoś problem"
-                            Clicked="OnReportIssue"
-                            BackgroundColor="#0077b6"
-                            TextColor="White"
-                            CornerRadius="10"
-                            />
+                        <!-- Zobacz moje dane -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewMyData"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="user_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Profil"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="usersolid.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                    <Button Text="Wyloguj" 
-        BackgroundColor="Gray" 
-        TextColor="White" 
-        Clicked="OnLogoutClicked" />
+                        <!-- Zgłoś problem -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnReportIssue"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="issue_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Zgłoś problem"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#003c53"/>
+                            <Image Source="flaga.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-                </VerticalStackLayout>
-            </Frame>
+                        <!-- Wyloguj -->
+                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLogoutClicked"/>
+                            </Grid.GestureRecognizers>
+                            <Image Source="logout_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label Text="Wyloguj"
+                                   Grid.Column="1"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   HorizontalTextAlignment="Start"
+                                   TextColor="#6c757d"/>
+                            <Image Source="logout.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
+                        </Grid>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

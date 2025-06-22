@@ -2,46 +2,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.AddProductPage"
              Title="Dodaj produkt"
-             BackgroundColor="White">
+             BackgroundColor="#e7ecf0">
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="20">
+        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" MaximumWidthRequest="800">
 
-            <Label Text="Nazwa produktu:" FontAttributes="Bold" FontSize="16"/>
-            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
-                <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów" />
+            <!-- Tytuł (opcjonalnie) -->
+            <Label Text="Dodaj nowy produkt"
+                   FontSize="26"
+                   FontFamily="RobotoMedium"
+                   HorizontalOptions="Center"
+                   TextColor="#003c53"/>
+
+            <!-- Nazwa produktu -->
+            <Label Text="Nazwa produktu"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
+            <Border Stroke="#ccc"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Entry x:Name="NameEntry"
+                       Placeholder="np. Pranie dywanów"
+                       PlaceholderColor="#607D8B"
+                       TextColor="#003c53"/>
             </Border>
 
-            <Label Text="Opis:" FontAttributes="Bold" FontSize="16"/>
-            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
-                <Editor x:Name="DescriptionEditor" HeightRequest="100" />
+            <!-- Opis -->
+            <Label Text="Opis"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
+            <Border Stroke="#ccc"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Editor x:Name="DescriptionEditor"
+                        HeightRequest="120"
+                        Placeholder="Opis produktu..."
+                        PlaceholderColor="#607D8B"
+                        TextColor="#003c53"/>
             </Border>
 
-            <Label Text="Cena:" FontAttributes="Bold" FontSize="16"/>
-            <Border Stroke="#ccc" StrokeThickness="1" StrokeShape="RoundRectangle 8" Background="#f0f0f0" Padding="10">
-                <Entry x:Name="PriceEntry" Placeholder="np. 150" Keyboard="Numeric" />
+            <!-- Cena -->
+            <Label Text="Cena"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
+            <Border Stroke="#ccc"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Entry x:Name="PriceEntry"
+                       Placeholder="np. 150"
+                       PlaceholderColor="#607D8B"
+                       TextColor="#003c53"
+                       Keyboard="Numeric"/>
             </Border>
 
+            <!-- Wybierz zdjęcie -->
             <Button Text="Wybierz zdjęcie"
                     Clicked="OnPickImageClicked"
-                    BackgroundColor="#0077b6"
+                    BackgroundColor="#003c53"
                     TextColor="White"
                     CornerRadius="10"
-                    HeightRequest="45"/>
+                    HeightRequest="50"
+                    FontFamily="RobotoMedium"/>
 
+            <!-- Podgląd zdjęcia -->
             <Image x:Name="SelectedImage"
                    Aspect="AspectFit"
                    IsVisible="False"
                    Margin="0"
                    HorizontalOptions="Center"
-                   WidthRequest="300" />
+                   WidthRequest="300"/>
 
+            <!-- Dodaj produkt -->
             <Button Text="Dodaj produkt"
                     Clicked="OnAddProductClicked"
-                    BackgroundColor="#0077b6"
+                    BackgroundColor="#003c53"
                     TextColor="White"
                     CornerRadius="10"
-                    HeightRequest="50"/>
-        </StackLayout>
+                    HeightRequest="55"
+                    FontFamily="RobotoMedium"/>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
