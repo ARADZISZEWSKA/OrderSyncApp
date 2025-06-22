@@ -16,7 +16,7 @@ public partial class ManageProductsPage : ContentPage
 
         _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("https://twoje-api-url/api/")
+            BaseAddress = new Uri("https://ordersyncbackend-akb4c5fmdhfkb9g3.polandcentral-01.azurewebsites.net/api")
         };
         _httpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", _token);
