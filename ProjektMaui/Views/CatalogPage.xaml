@@ -43,7 +43,7 @@
                         <Button Text="Zamów"
                                 Clicked="OnOrderClicked"
                                 CommandParameter="{Binding Id}"
-                                BackgroundColor="#5A35D5"
+                                BackgroundColor="#0077b6"
                                 TextColor="White"
                                 CornerRadius="8" />
 

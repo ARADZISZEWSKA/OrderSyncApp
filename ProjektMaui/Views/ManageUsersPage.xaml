@@ -26,10 +26,10 @@
                                WidthRequest="350" 
                             HorizontalOptions="Center">
 
-                            <VerticalStackLayout Spacing="10">
+                            <VerticalStackLayout Spacing="5">
 
                                 <Label Text="{Binding Email}"
-                                       FontAttributes="Bold"
+                                 
                                        FontSize="18"
                                        TextColor="#333"/>
 
@@ -53,7 +53,7 @@
                                 <Button Text="Nadaj rolę Admina"
                                         Clicked="OnMakeAdminClicked"
                                         CommandParameter="{Binding Id}"
-                                        BackgroundColor="#673AB7"
+                                        BackgroundColor="#0077b6"
                                         TextColor="White"
                                         CornerRadius="8"
                                         Padding="10,5"

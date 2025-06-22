@@ -38,7 +38,7 @@
                                 Text="Zmień status"
                                 Clicked="OnChangeStatusClicked"
                                 CommandParameter="{Binding Id}"
-                                BackgroundColor="#007ACC"
+                                BackgroundColor="#0077b6"
                                 TextColor="White"
                                 CornerRadius="5"
                                 Padding="10,5" />           

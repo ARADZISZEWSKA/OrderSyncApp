@@ -8,7 +8,7 @@
 
             <Label x:Name="WelcomeLabel"
                    FontSize="26"
-                   FontAttributes="Bold"
+                   FontFamily="RobotoMedium"
                    HorizontalOptions="Center" />
 
             <!-- PANEL ADMINA -->
@@ -24,44 +24,44 @@
 
                     <Label Text="Panel administratora:"
                            FontSize="18"
-                           FontAttributes="Bold"
+                           FontFamily="RobotoMedium"
                            HorizontalOptions="Center" />
 
                     <Button Text="Dodaj produkt"
                             Clicked="OnAddProduct"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                     <Button Text="Zarządzaj produktami"
         Clicked="OnManageProducts"
-        BackgroundColor="#5A35D5"
+        BackgroundColor="#0077b6"
         TextColor="White"
         CornerRadius="10"
-        FontAttributes="Bold"/>
+        />
 
 
                     <Button Text="Zarządzaj użytkownikami"
                             Clicked="OnManageUsers"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                     <Button Text="Zobacz złożone zamówienia"
                             Clicked="OnViewOrders"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                     <Button Text="Zobacz wszystkie raporty"
                             Clicked="OnViewReports"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                 </VerticalStackLayout>
             </Frame>
@@ -79,38 +79,38 @@
 
                     <Label Text="Panel użytkownika:"
                            FontSize="18"
-                           FontAttributes="Bold"
+                           FontFamily="RobotoMedium"
                            HorizontalOptions="Center" />
 
                     <Button Text="Przeglądaj katalog"
                             Clicked="OnCatalogClicked"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                     <Button Text="Moje zamówienia"
                             Clicked="OnMyOrdersClicked"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                     <Button Text="Zobacz moje dane"
                             Clicked="OnViewMyData"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
                     
                     
 
                     <Button Text="Zgłoś problem"
                             Clicked="OnReportIssue"
-                            BackgroundColor="#5A35D5"
+                            BackgroundColor="#0077b6"
                             TextColor="White"
                             CornerRadius="10"
-                            FontAttributes="Bold"/>
+                            />
 
                 </VerticalStackLayout>
             </Frame>
