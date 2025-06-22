@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.ManageProductsPage"
+             Title="Zarządzaj produktami">
+
+    <CollectionView x:Name="ProductsCollection" ItemsLayout="VerticalList">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Margin="10" Padding="10" BorderColor="#ccc">
+                    <VerticalStackLayout Spacing="5">
+                        <Image Source="{Binding ImageUrl}" HeightRequest="150" Aspect="AspectFill"/>
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="{Binding Description}" FontSize="14"/>
+                        <Label Text="{Binding Price, StringFormat='Cena: {0:C}'}" FontSize="14"/>
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Button Text="Edytuj"
+                                    Clicked="OnEditProduct"
+                                    CommandParameter="{Binding .}"/>
+                            <Button Text="Usuń"
+                                    Clicked="OnDeleteProduct"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red"
+                                    TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

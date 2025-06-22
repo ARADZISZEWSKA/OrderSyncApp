@@ -40,6 +40,12 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new ManageUsersPage(_token));
     }
 
+    private async void OnManageProducts(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ManageProductsPage(_token));
+    }
+
+
     private async void OnViewReports(object sender, EventArgs e)
     {
         await DisplayAlert("Raporty", "Tutaj będą raporty.", "OK");

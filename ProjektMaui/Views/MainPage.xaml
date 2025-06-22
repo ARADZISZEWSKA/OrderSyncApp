@@ -34,6 +34,14 @@
                             CornerRadius="10"
                             FontAttributes="Bold"/>
 
+                    <Button Text="Zarządzaj produktami"
+        Clicked="OnManageProducts"
+        BackgroundColor="#5A35D5"
+        TextColor="White"
+        CornerRadius="10"
+        FontAttributes="Bold"/>
+
+
                     <Button Text="Zarządzaj użytkownikami"
                             Clicked="OnManageUsers"
                             BackgroundColor="#5A35D5"
@@ -94,6 +102,8 @@
                             TextColor="White"
                             CornerRadius="10"
                             FontAttributes="Bold"/>
+                    
+                    
 
                     <Button Text="Zgłoś problem"
                             Clicked="OnReportIssue"
