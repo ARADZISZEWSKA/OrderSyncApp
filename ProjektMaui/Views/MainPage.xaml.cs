@@ -49,11 +49,6 @@ public partial class MainPage : ContentPage
     }
 
 
-    private async void OnViewReports(object sender, EventArgs e)
-    {
-        await DisplayAlert("Raporty", "Tutaj będą raporty.", "OK");
-    }
-
     private async void OnAddProduct(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new AddProductPage(_token));
@@ -63,6 +58,12 @@ public partial class MainPage : ContentPage
     {
         await Navigation.PushAsync(new OrdersListPage(_token));
     }
+
+    private async void OnViewReports(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ReportListPage(_token));
+    }
+
 
     private async void OnCatalogClicked(object sender, EventArgs e)
     {
@@ -80,11 +81,11 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new MyProfilePage(_token, _userId));
     }
 
-
     private async void OnReportIssue(object sender, EventArgs e)
     {
-        await DisplayAlert("Zgłoś", "Tutaj możesz zgłosić problem.", "OK");
+        await Navigation.PushAsync(new ReportIssuePage(_token, _userId, Name));
     }
+
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {

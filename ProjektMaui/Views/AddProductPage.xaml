@@ -2,8 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.AddProductPage"
              Title="Dodaj produkt">
-
-    <StackLayout Padding="20" Spacing="15">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
         <Label Text="Nazwa produktu:" />
         <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów"/>
 
@@ -28,4 +28,5 @@
 
         <Button Text="Dodaj produkt" Clicked="OnAddProductClicked" BackgroundColor="#0077b6"/>
     </StackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,0 +1,30 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjektMaui.Views.ReportListPage"
+             Title="Lista zgłoszeń">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+        <HorizontalStackLayout Spacing="10">
+            <DatePicker x:Name="FromDatePicker" />
+            <DatePicker x:Name="ToDatePicker" />
+            <Button Text="Filtruj" Clicked="OnFilterClicked" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="ReportCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Content}" FontSize="16" />
+                            <Label Text="{Binding CreatedAt, StringFormat='Data: {0:yyyy-MM-dd HH:mm}'}" FontSize="12" />
+                            <Label Text="{Binding UserName, StringFormat='Zgłosił: {0}'}" FontSize="12" FontAttributes="Italic" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
