@@ -8,7 +8,7 @@
         <HorizontalStackLayout Spacing="10">
             <DatePicker x:Name="FromDatePicker" />
             <DatePicker x:Name="ToDatePicker" />
-            <Button Text="Filtruj" Clicked="OnFilterClicked" />
+                <Button Text="Filtruj" Clicked="OnFilterClicked" BackgroundColor="#003c53" />
         </HorizontalStackLayout>
 
         <CollectionView x:Name="ReportCollection">

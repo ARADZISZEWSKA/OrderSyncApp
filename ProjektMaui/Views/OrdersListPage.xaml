@@ -1,88 +1,124 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektMaui.Views.OrdersListPage"
-             Title="Zamówienia">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjektMaui.Views.OrdersListPage"
+
+    BackgroundColor="#e7ecf0">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <Grid>
+            <!-- ✅ Responsywny kontener -->
+            <ContentView 
+                x:Name="OrdersContainer"
+                HorizontalOptions="Center"
+                Margin="20"
+                MaximumWidthRequest="1000">
 
-            <!-- 📅 Filtr dat -->
-            <HorizontalStackLayout Spacing="10">
+                <VerticalStackLayout 
+                    Padding="10"
+                    Spacing="20">
 
-                <VerticalStackLayout>
-                    <Label Text="Od:" />
-                    <DatePicker x:Name="FromDatePicker" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout>
-                    <Label Text="Do:" />
-                    <DatePicker x:Name="ToDatePicker" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout>
-                    <Label Text="Status:" />
-                    <Picker x:Name="StatusPicker" />
-                </VerticalStackLayout>
-
-                <Button Text="Filtruj"
-            Clicked="OnFilterClicked"
-            BackgroundColor="#0077b6"
-            TextColor="White"
-            CornerRadius="10"
-            Padding="10,5"/>
-            </HorizontalStackLayout>
-
-
-            <!-- 📋 Lista zamówień -->
-            <CollectionView x:Name="OrdersCollectionView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="Gray"
-                           BackgroundColor="#f9f9f9"
+                    <!-- 📅 Filtr dat (responsywny) -->
+                    <Frame BackgroundColor="White"
                            CornerRadius="10"
                            Padding="15"
-                           Margin="5"
                            HasShadow="True">
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Product.Name}"
-                                   FontAttributes="Bold"
-                                   FontSize="18" />
-                                <Label Text="Uwagi:" FontAttributes="Bold" />
-                                <Label Text="{Binding Notes}" />
 
-                                <Label Text="Użytkownik:" FontAttributes="Bold" />
-                                <Label Text="{Binding User.FirstName}" />
+                        <!-- ✅ WrapLayout: działa jak Flexbox, układa elementy w pionie na małych ekranach -->
+                        <FlexLayout 
+                            Direction="Row"
+                            Wrap="Wrap"
+                            JustifyContent="Start"
+                            AlignItems="Center"
+                            >
 
-                                <Label Text="Status:" FontAttributes="Bold" />
-                                <Label Text="{Binding Status}" />
-
-                                <Label Text="{Binding CreatedAt}" FontSize="12" TextColor="Gray" />
-
-                                <Button Text="Zmień status"
-                                    Clicked="OnChangeStatusClicked"
-                                    CommandParameter="{Binding Id}"
-                                    BackgroundColor="#0077b6"
-                                    TextColor="White"
-                                    CornerRadius="5"
-                                    Padding="10,5" />
+                            <VerticalStackLayout Spacing="5"
+                                                 WidthRequest="200"
+                                                 Margin="0,0,15,15">
+                                <Label Text="Od:" FontAttributes="Bold"/>
+                                <DatePicker x:Name="FromDatePicker" />
                             </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
 
-            <!-- 📤 Eksport CSV -->
-            <Button 
-            Text="Eksportuj do CSV"
-            Clicked="OnExportClicked"
-            BackgroundColor="#0077b6"
-            TextColor="White"
-            CornerRadius="10"
-            Padding="15,10"
-            Margin="0,20,0,20"/>
+                            <VerticalStackLayout Spacing="5"
+                                                 Padding="10"
+                                                 WidthRequest="200"
+                                                 Margin="0,0,15,15">
+                                <Label Text="Do:" FontAttributes="Bold"/>
+                                <DatePicker x:Name="ToDatePicker" />
+                            </VerticalStackLayout>
 
-        </VerticalStackLayout>
+                            <VerticalStackLayout Spacing="5"
+                                                 WidthRequest="200"
+                                                 Margin="0,0,15,15">
+                                <Label Text="Status:" FontAttributes="Bold"/>
+                                <Picker x:Name="StatusPicker" />
+                            </VerticalStackLayout>
+
+                            <Button Text="Filtruj"
+                                    Clicked="OnFilterClicked"
+                                    BackgroundColor="#003c53"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    Padding="15,10"
+                                    WidthRequest="150"/>
+                        </FlexLayout>
+                    </Frame>
+
+                    <!-- 📋 Lista zamówień -->
+                    <CollectionView x:Name="OrdersCollectionView">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#d0d0d0"
+                                       BackgroundColor="White"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       Margin="0,5"
+                                       HasShadow="True">
+                                    <VerticalStackLayout Spacing="8">
+                                        <Label Text="{Binding Product.Name}"
+                                               FontFamily="RobotoMedium"
+                                               FontSize="18" />
+                                        <Label Text="Uwagi:" FontFamily="RobotoMedium" />
+                                        <Label Text="{Binding Notes}" />
+
+                                        <Label Text="Użytkownik:" FontFamily="RobotoMedium" />
+                                        <Label Text="{Binding User.FirstName}" />
+
+                                        <Label Text="Status:" FontFamily="RobotoMedium" />
+                                        <Label Text="{Binding Status}" />
+
+                                        <Label Text="{Binding CreatedAt}" 
+                                               FontSize="12" 
+                                               TextColor="Gray" />
+
+                                        <Button Text="Zmień status"
+                                                Clicked="OnChangeStatusClicked"
+                                                CommandParameter="{Binding Id}"
+                                                BackgroundColor="#003c53"
+                                                TextColor="White"
+                                                CornerRadius="8"
+                                                Padding="12,8" 
+                                                WidthRequest="200"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!-- 📤 Eksport CSV -->
+                    <Button 
+                        Text="Eksportuj do CSV"
+                        Clicked="OnExportClicked"
+                        BackgroundColor="#003c53"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="15,10"
+                        Margin="0,20,0,20"
+                        WidthRequest="200"/>
+                </VerticalStackLayout>
+
+            </ContentView>
+        </Grid>
     </ScrollView>
-
 
 </ContentPage>
