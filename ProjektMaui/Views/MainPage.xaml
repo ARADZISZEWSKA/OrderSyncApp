@@ -79,21 +79,7 @@
                             <Image Source="lista.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
                         </Grid>
 
-                        <!-- Zarządzaj użytkownikami -->
-                        <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnManageUsers"/>
-                            </Grid.GestureRecognizers>
-                            <Image Source="users_icon.png" WidthRequest="24" HeightRequest="24"/>
-                            <Label Text="Użytkownicy"
-                                   Grid.Column="1"
-                                   FontSize="16"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Start"
-                                   HorizontalTextAlignment="Start"
-                                   TextColor="#003c53"/>
-                            <Image Source="userssolid.png" WidthRequest="18" HeightRequest="18" Grid.Column="2" VerticalOptions="Center"/>
-                        </Grid>
+                       
 
                         <!-- Zobacz złożone zamówienia -->
                         <Grid Padding="15" ColumnDefinitions="Auto,*,Auto" BackgroundColor="#f8f9fa">

@@ -1,50 +1,81 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektMaui.Views.EditProductPage"
-             Title="Edytuj produkt"
-             BackgroundColor="#f2f2f2"
-             Padding="10">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ProjektMaui.Views.EditProductPage"
+    BackgroundColor="#e7ecf0">
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="15">
+        <Grid>
+            <!-- ✅ Responsywny kontener -->
+            <ContentView 
+                x:Name="FormContainer"
+                HorizontalOptions="Fill"
+                Margin="20"
+                MaximumWidthRequest="600">
 
-            <Label Text="Nazwa produktu:" />
-            <Entry x:Name="NameEntry" Placeholder="np. Pranie dywanów"/>
+                <VerticalStackLayout 
+                    Padding="10"
+                    Spacing="20">
 
-            <Label Text="Opis:" />
-            <Editor x:Name="DescriptionEditor" HeightRequest="100"/>
+                    <!-- Logo lub nagłówek opcjonalnie -->
+                    <Label Text="Edytuj produkt"
+                           FontFamily="RobotoMedium"
+                           FontSize="24"
+                           TextColor="#003c53"
+                           HorizontalOptions="Center"/>
 
-            <Label Text="Cena:" />
-            <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="np. 150"/>
+                    <!-- Pola formularza -->
+                    <Entry x:Name="NameEntry"
+                           Placeholder="Nazwa produktu (np. Pranie dywanów)"
+                           BackgroundColor="White"
+                           HorizontalOptions="Fill"/>
 
-            <Button Text="Wybierz nowe zdjęcie"
-                    Clicked="OnPickImageClicked"
-                    BackgroundColor="#0077b6"
-                    TextColor="White"
-                    CornerRadius="10"/>
+                    <Editor x:Name="DescriptionEditor"
+                            Placeholder="Opis"
+                            HeightRequest="100"
+                            BackgroundColor="White"
+                            HorizontalOptions="Fill"/>
 
-            <Frame CornerRadius="16"
-                   Padding="0"
-                   HasShadow="False"
-                   BackgroundColor="#eeeeee"
-                   HeightRequest="260"
-                   WidthRequest="260"
-                   HorizontalOptions="Center"
-                   IsVisible="{Binding Source={x:Reference SelectedImage}, Path=IsVisible}">
+                    <Entry x:Name="PriceEntry"
+                           Placeholder="Cena (np. 150)"
+                           Keyboard="Numeric"
+                           BackgroundColor="White"
+                           HorizontalOptions="Fill"/>
 
-                <Image x:Name="SelectedImage"
-                       Aspect="AspectFit"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand" />
-            </Frame>
+                    <!-- Przycisk wybierania zdjęcia -->
+                    <Button Text="Wybierz nowe zdjęcie"
+                            Clicked="OnPickImageClicked"
+                            BackgroundColor="#003c53"
+                            TextColor="White"
+                            HorizontalOptions="Fill"/>
 
-            <Button Text="Zapisz zmiany" Clicked="OnSaveChangesClicked"
-                    BackgroundColor="#0077b6"
-                    TextColor="White"
-                    CornerRadius="10"
-                    HeightRequest="42"
-                    FontSize="16"/>
+                    <!-- Podgląd zdjęcia -->
+                    <Frame CornerRadius="16"
+                           Padding="0"
+                           HasShadow="False"
+                           BackgroundColor="#eeeeee"
+                           HeightRequest="260"
+                           WidthRequest="260"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding Source={x:Reference SelectedImage}, Path=IsVisible}">
 
-        </StackLayout>
+                        <Image x:Name="SelectedImage"
+                               Aspect="AspectFit"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand" />
+                    </Frame>
+
+                    <!-- Przycisk zapisu -->
+                    <Button Text="Zapisz zmiany"
+                            Clicked="OnSaveChangesClicked"
+                            BackgroundColor="#003c53"
+                            TextColor="White"
+                            HorizontalOptions="Fill"
+                            HeightRequest="42"
+                            FontSize="16"/>
+
+                </VerticalStackLayout>
+            </ContentView>
+        </Grid>
     </ScrollView>
 </ContentPage>

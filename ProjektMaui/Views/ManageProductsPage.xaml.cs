@@ -1,6 +1,6 @@
 namespace ProjektMaui.Views;
 
-using ProjektMaui.Models; 
+using ProjektMaui.Models;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -12,6 +12,7 @@ public partial class ManageProductsPage : ContentPage
     public ManageProductsPage(string token)
     {
         InitializeComponent();
+
         _token = token;
 
         _httpClient = new HttpClient
@@ -58,18 +59,17 @@ public partial class ManageProductsPage : ContentPage
     private async void OnEditProduct(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var product = button?.CommandParameter as Product;
+        var product = button?.BindingContext as Product;
         if (product != null)
         {
             await Navigation.PushAsync(new EditProductPage(_token, product));
         }
     }
 
-
     private async void OnDeleteProduct(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var product = button?.CommandParameter as Product;
+        var product = button?.BindingContext as Product;
         if (product != null)
         {
             var confirm = await DisplayAlert("Usuñ", $"Na pewno usun¹æ {product.Name}?", "Tak", "Nie");
@@ -79,7 +79,7 @@ public partial class ManageProductsPage : ContentPage
                 if (response.IsSuccessStatusCode)
                 {
                     await DisplayAlert("Usuniêto", "Produkt usuniêty", "OK");
-                    LoadProducts(); // odœwie¿ listê
+                    await LoadProducts();
                 }
                 else
                 {
@@ -88,4 +88,6 @@ public partial class ManageProductsPage : ContentPage
             }
         }
     }
+
+
 }

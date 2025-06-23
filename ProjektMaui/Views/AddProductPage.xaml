@@ -1,7 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.AddProductPage"
-             Title="Dodaj produkt"
              BackgroundColor="#e7ecf0">
 
     <ScrollView>
@@ -12,57 +11,49 @@
                    FontSize="26"
                    FontFamily="RobotoMedium"
                    HorizontalOptions="Center"
-                   TextColor="#003c53"/>
+                   TextColor="#003c53"
+                   Padding="20"/>
 
             <!-- Nazwa produktu -->
             <Label Text="Nazwa produktu"
                    FontAttributes="Bold"
                    FontSize="16"
                    TextColor="#003c53"/>
-            <Border Stroke="#ccc"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 10"
-                    BackgroundColor="White"
-                    Padding="12">
-                <Entry x:Name="NameEntry"
+
+            <Entry x:Name="NameEntry"
                        Placeholder="np. Pranie dywanów"
                        PlaceholderColor="#607D8B"
-                       TextColor="#003c53"/>
-            </Border>
+                       TextColor="#003c53"
+                       BackgroundColor="White"/>
+
+
 
             <!-- Opis -->
             <Label Text="Opis"
                    FontAttributes="Bold"
                    FontSize="16"
                    TextColor="#003c53"/>
-            <Border Stroke="#ccc"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 10"
-                    BackgroundColor="White"
-                    Padding="12">
-                <Editor x:Name="DescriptionEditor"
+
+            <Editor x:Name="DescriptionEditor"
                         HeightRequest="120"
                         Placeholder="Opis produktu..."
                         PlaceholderColor="#607D8B"
-                        TextColor="#003c53"/>
-            </Border>
+                        TextColor="#003c53"
+                        BackgroundColor="White"/>
 
             <!-- Cena -->
             <Label Text="Cena"
                    FontAttributes="Bold"
                    FontSize="16"
                    TextColor="#003c53"/>
-            <Border Stroke="#ccc"
-                    StrokeThickness="1"
-                    StrokeShape="RoundRectangle 10"
-                    BackgroundColor="White"
-                    Padding="12">
-                <Entry x:Name="PriceEntry"
+
+            <Entry x:Name="PriceEntry"
                        Placeholder="np. 150"
                        PlaceholderColor="#607D8B"
                        TextColor="#003c53"
-                       Keyboard="Numeric"/>
-            </Border>
+                       Keyboard="Numeric"
+                       BackgroundColor="White"/>
+
 
             <!-- Wybierz zdjęcie -->
             <Button Text="Wybierz zdjęcie"
