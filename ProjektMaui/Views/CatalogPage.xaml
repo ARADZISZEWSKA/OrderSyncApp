@@ -1,7 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjektMaui.Views.CatalogPage"
-             Title="Katalog produktów">
+             x:Class="ProjektMaui.Views.CatalogPage">
     <ScrollView>
         <CollectionView x:Name="ProductsCollection"
                     ItemsLayout="VerticalGrid, 2"
@@ -26,7 +25,7 @@
 
                         <!-- Nazwa produktu -->
                         <Label Text="{Binding Name}"
-                               FontAttributes="Bold"
+                               FontFamily="RobotoMedium"
                                FontSize="20" />
 
                         <!-- Opis produktu -->
@@ -44,7 +43,7 @@
                         <Button Text="Zamów"
                                 Clicked="OnOrderClicked"
                                 CommandParameter="{Binding Id}"
-                                BackgroundColor="#0077b6"
+                                BackgroundColor="#003c53"
                                 TextColor="White"
                                 CornerRadius="8" />
 

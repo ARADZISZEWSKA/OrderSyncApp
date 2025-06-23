@@ -1,59 +1,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.MyOrdersPage"
-             Title="Moje zamówienia">
+             Title="Moje zamówienia"
+             BackgroundColor="#e7ecf0">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <ListView x:Name="OrdersListView" HasUnevenRows="True" SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame BorderColor="Gray"
-                                   BackgroundColor="#f9f9f9"
-                                   CornerRadius="10"
-                                   Padding="15"
-                                   Margin="5"
-                                   HasShadow="True">
-                                <VerticalStackLayout Spacing="5">
-                                    <Label Text="{Binding Product.Name}"
-                                           FontAttributes="Bold"
-                                           FontSize="18" />
-                                    <Image Source="{Binding ImageUrl}"
-                                           HeightRequest="200"
-                                           WidthRequest="300"
-                                           Aspect="AspectFill">
-                                        <Image.Triggers>
-                                            <DataTrigger TargetType="Image"
-                                                         Binding="{Binding ImageUrl}"
-                                                         Value="">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Image"
-                                                         Binding="{Binding ImageUrl}"
-                                                         Value="{x:Null}">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </Image.Triggers>
-                                    </Image>
-                                    <Label Text="Uwagi:"
-                                           FontAttributes="Bold" />
-                                    <Label Text="{Binding Notes}" />
+        <Grid>
+            <!-- ✅ Responsywny kontener -->
+            <ContentView 
+                x:Name="MyOrdersContainer"
+                HorizontalOptions="Center"
+                Margin="20"
+                MaximumWidthRequest="1000">
 
-                                    <Label Text="Status:"
-                                           FontAttributes="Bold" />
-                                    <Label Text="{Binding Status}" />
+                <VerticalStackLayout 
+                    Padding="10"
+                    Spacing="20">
 
-                                    <Label Text="{Binding CreatedAt}"
-                                           FontSize="12"
-                                           TextColor="Gray" />
-                                </VerticalStackLayout>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </VerticalStackLayout>
+                    <!-- 📋 Lista zamówień -->
+                    <CollectionView x:Name="OrdersListView"
+                                    ItemsLayout="VerticalList">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#d0d0d0"
+                                       BackgroundColor="White"
+                                       CornerRadius="10"
+                                       Padding="15"
+                                       Margin="0,5"
+                                       HasShadow="True">
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label Text="{Binding Product.Name}"
+                                               FontFamily="RobotoMedium"
+                                               FontSize="18" />
+
+                                        <Image Source="{Binding ImageUrl}"
+                                               HeightRequest="200"
+                                               Aspect="AspectFill"
+                                               HorizontalOptions="Fill"
+                                               >
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding ImageUrl}"
+                                                             Value="">
+                                                    <Setter Property="IsVisible" Value="False" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding ImageUrl}"
+                                                             Value="{x:Null}">
+                                                    <Setter Property="IsVisible" Value="False" />
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+
+                                        <Label Text="Uwagi:" FontFamily="RobotoMedium" />
+                                        <Label Text="{Binding Notes}" />
+
+                                        <Label Text="Status:" FontFamily="RobotoMedium" />
+                                        <Label Text="{Binding Status}" />
+
+                                        <Label Text="{Binding CreatedAt}" 
+                                               FontSize="12"
+                                               TextColor="Gray" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </VerticalStackLayout>
+            </ContentView>
+        </Grid>
     </ScrollView>
 
 </ContentPage>

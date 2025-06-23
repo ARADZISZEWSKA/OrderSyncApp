@@ -16,9 +16,10 @@
 
         <Button Text="Zapisz zmiany"
                 Clicked="OnSaveClicked"
-                BackgroundColor="#0077b6"
+                BackgroundColor="#003c53"
                 TextColor="White"
-                CornerRadius="10"/>
+                CornerRadius="10"
+                WidthRequest="200"/>
 
     </StackLayout>
 </ContentPage>

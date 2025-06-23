@@ -6,7 +6,7 @@
         <VerticalStackLayout Padding="20" Spacing="10">
             <Label Text="Opisz problem:" FontSize="16" />
             <Editor x:Name="ContentEditor" Placeholder="Wpisz treść zgłoszenia..." HeightRequest="150" />
-            <Button Text="Wyślij" BackgroundColor="#003c53" Clicked="OnSubmitClicked" />
+            <Button Text="Wyślij" BackgroundColor="#003c53" Clicked="OnSubmitClicked" WidthRequest="200" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
