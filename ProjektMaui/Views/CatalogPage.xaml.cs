@@ -1,12 +1,16 @@
+
 using System.Text.Json;
 
 namespace ProjektMaui.Views;
 
 public partial class CatalogPage : ContentPage
 {
-    public CatalogPage()
+    private string _token;
+
+    public CatalogPage(string token)
     {
         InitializeComponent();
+        _token = token;
         LoadProducts();
     }
 
@@ -51,9 +55,8 @@ public partial class CatalogPage : ContentPage
 
         if (product != null)
         {
-            await Navigation.PushAsync(new OrderPage(product.Id, product.Name));
+            await Navigation.PushAsync(new OrderPage(product.Id, product.Name, _token));
         }
-
     }
 
 

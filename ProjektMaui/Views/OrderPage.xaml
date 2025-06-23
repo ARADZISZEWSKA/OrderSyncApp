@@ -1,42 +1,86 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjektMaui.Views.OrderPage"
-             Title="Nowe zamówienie">
+             Title="Nowe zamówienie"
+             BackgroundColor="#e7ecf0">
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <Label x:Name="ProductLabel" FontSize="20" FontAttributes="Bold"/>
+        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" MaximumWidthRequest="800">
 
-            <Label Text="Uwagi:" />
-            <Editor x:Name="NotesEditor" HeightRequest="100"/>
-
-            <Label Text="Adres odbioru:"
+            <Label x:Name="ProductLabel"
+                   FontSize="26"
+                   FontFamily="RobotoMedium"
+                   HorizontalOptions="Center"
+                   TextColor="#003c53"
                    FontAttributes="Bold"/>
 
-            <Entry x:Name="AddressEntry"
-                   Placeholder="np. ul. Mickiewicza 10, Kraków"/>
+            <Label Text="Uwagi:"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
+            <Border Stroke="#ccc"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Editor x:Name="NotesEditor"
+                        HeightRequest="100"
+                        Placeholder="Dodaj uwagi..."
+                        PlaceholderColor="#607D8B"
+                        TextColor="#003c53"/>
+            </Border>
+
+            <Label Text="Adres odbioru:"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
+            <Border Stroke="#ccc"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="White"
+                    Padding="12">
+                <Entry x:Name="AddressEntry"
+                       Placeholder="np. ul. Mickiewicza 10, Kraków"
+                       PlaceholderColor="#607D8B"
+                       TextColor="#003c53"/>
+            </Border>
 
             <!-- LOKALIZACJA (GPS) -->
             <Button Text="Użyj mojej lokalizacji"
                     Clicked="OnUseLocationClicked"
-                    BackgroundColor="#5A35D5"
+                    BackgroundColor="#003c53"
                     TextColor="White"
-                    CornerRadius="10"/>
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    FontFamily="RobotoMedium"/>
 
-            <Label Text="Załącz zdjęcie:" FontAttributes="Bold"/>
+            <Label Text="Załącz zdjęcie:"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   TextColor="#003c53"/>
 
             <Button Text="Wybierz zdjęcie"
-        Clicked="OnPickImageClicked"
-        BackgroundColor="#5A35D5"
-        TextColor="White"
-        CornerRadius="10"/>
+                    Clicked="OnPickImageClicked"
+                    BackgroundColor="#003c53"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    FontFamily="RobotoMedium"/>
 
             <Image x:Name="SelectedImage"
-       HeightRequest="200"
-       Aspect="AspectFill"
-       IsVisible="False"/>
+                   Aspect="AspectFit"
+                   IsVisible="False"
+                   Margin="0"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"/>
 
-
-            <Button Text="Wyślij zamówienie" Clicked="OnSubmitOrder"/>
+            <Button Text="Wyślij zamówienie"
+                    Clicked="OnSubmitOrder"
+                    BackgroundColor="#003c53"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="55"
+                    FontFamily="RobotoMedium"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

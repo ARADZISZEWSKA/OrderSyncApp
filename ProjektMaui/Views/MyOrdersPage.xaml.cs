@@ -35,7 +35,7 @@ public partial class MyOrdersPage : ContentPage
                 var orders = JsonSerializer.Deserialize<List<OrderDto>>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                OrdersCollectionView.ItemsSource = orders;
+                OrdersListView.ItemsSource = orders;
             }
             else
             {
@@ -48,4 +48,3 @@ public partial class MyOrdersPage : ContentPage
         }
     }
 }
-

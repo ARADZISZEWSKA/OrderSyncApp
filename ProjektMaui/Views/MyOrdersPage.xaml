@@ -5,35 +5,54 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <CollectionView x:Name="OrdersCollectionView">
-                <CollectionView.ItemTemplate>
+            <ListView x:Name="OrdersListView" HasUnevenRows="True" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Gray"
-                               BackgroundColor="#f9f9f9"
-                               CornerRadius="10"
-                               Padding="15"
-                               Margin="5"
-                               HasShadow="True">
-                            <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Product.Name}"
-                                       FontAttributes="Bold"
-                                       FontSize="18" />
-                                <Label Text="Uwagi:"
-                                       FontAttributes="Bold" />
-                                <Label Text="{Binding Notes}" />
+                        <ViewCell>
+                            <Frame BorderColor="Gray"
+                                   BackgroundColor="#f9f9f9"
+                                   CornerRadius="10"
+                                   Padding="15"
+                                   Margin="5"
+                                   HasShadow="True">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="{Binding Product.Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="18" />
+                                    <Image Source="{Binding ImageUrl}"
+                                           HeightRequest="200"
+                                           WidthRequest="300"
+                                           Aspect="AspectFill">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image"
+                                                         Binding="{Binding ImageUrl}"
+                                                         Value="">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image"
+                                                         Binding="{Binding ImageUrl}"
+                                                         Value="{x:Null}">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Label Text="Uwagi:"
+                                           FontAttributes="Bold" />
+                                    <Label Text="{Binding Notes}" />
 
-                                <Label Text="Status:"
-                                       FontAttributes="Bold" />
-                                <Label Text="{Binding Status}" />
+                                    <Label Text="Status:"
+                                           FontAttributes="Bold" />
+                                    <Label Text="{Binding Status}" />
 
-                                <Label Text="{Binding CreatedAt}"
-                                       FontSize="12"
-                                       TextColor="Gray" />
-                            </VerticalStackLayout>
-                        </Frame>
+                                    <Label Text="{Binding CreatedAt}"
+                                           FontSize="12"
+                                           TextColor="Gray" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </ScrollView>
 

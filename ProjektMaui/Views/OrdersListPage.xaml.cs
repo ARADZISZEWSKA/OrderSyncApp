@@ -182,6 +182,7 @@ public class OrderDto
     public string Notes { get; set; } = string.Empty;
     public OrderStatus Status { get; set; }
     public DateTime CreatedAt { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
 }
 
 public class ProductDto
